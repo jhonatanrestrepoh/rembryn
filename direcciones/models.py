@@ -44,6 +44,15 @@ def validate_direction(direccion):
 # Create your models here.
 class Departamento(models.Model):
     nombre = models.CharField(blank=False, max_length=100, unique=True)
+    
+    def __str__(self):
+        return self.nombre
+    
+    
+    class Meta:
+        verbose_name = "Departamento"
+        verbose_name_plural = "Departamentos"
+        
 
 class Municipio(models.Model):
     nombre = models.CharField(blank=False, max_length=100, unique=True)
