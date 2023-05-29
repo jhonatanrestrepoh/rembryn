@@ -3,14 +3,14 @@ import re
 
 # models
 from clientes.models import Cliente
-from django.core.exceptions import ValidationError
 
 # aditional package
 from smart_selects.db_fields import ChainedForeignKey
 
 # django
 from django.db import models
-
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 #Create your validations here.
 def validate_direction(direccion):
@@ -24,7 +24,8 @@ def validate_direction(direccion):
         r'^(Calle|Carrera|Diagonal|Cl|Cr|Diag|Cra)\s\d{1,3}\s(sur)\s#\s\d{1,3}(sur)-\d{1,3}\s\d{1,3}$',
         r'^(Calle|Carrera|Diagonal|Cl|Cr|Diag|Cra)\s\d{1,3}[a-zA-Z]?\s(sur)\s#\s\d{1,3}\s(sur)\s-\s\d{1,3}\s\d{1,2}\s(apto)\s\d{1,4}$',
         r'^Cra \d+ # \d+ [a-zA-Z] Sur \d+$',
-        r'^Cra \d+[A-Z]? \d+-\d+$'
+        r'^Cra \d+[A-Z]? \d+-\d+$',
+        r'^Cl \d+ sur # \d+[A-Z]?-\d+ Casa \d+$'
     ]
     
     is_valide = False

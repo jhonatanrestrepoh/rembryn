@@ -24,4 +24,7 @@ urlpatterns = [
     
     #accounts
     path('accounts/', include('accounts.urls')),
+    
+    #django-smart-selects
+    path('chaining/', include('smart_selects.urls')),
 ]
