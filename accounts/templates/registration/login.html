@@ -1,0 +1,31 @@
+{% extends 'registration/base.html' %} 
+{% block title %} Iniciar sesión {% endblock%} 
+{% block content %}
+<h1>Iniciar sesión</h1>
+{% if error_message %}
+        <p>{{ error_message }}</p>
+{% endif %}
+
+
+
+<form action="" method="POST">
+  {% csrf_token %}
+
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Nombre usuario</label>
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      aria-describedby="emailHelp"
+    />
+    
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+    <input type="password" class="form-control" name="password" />
+  </div>
+ 
+  <input type="submit" value="Submit" class="btn btn-info text-white" />
+</form>
+{% endblock %}

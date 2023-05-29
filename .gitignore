@@ -1,0 +1,34 @@
+# Virtual environment
+venv/
+env/
+
+# Database files
+*.sqlite3
+
+# Static files
+/static/
+
+# Media files
+/media/
+
+# Compiled Python files
+*.pyc
+__pycache__/
+
+# Log files
+*.log
+
+# Django secret key (should not be shared)
+.env
+
+# IDE or editor specific files
+.idea/
+.vscode/
+
+# Compiled translations
+locale/
+
+# Other sensitive or environment-specific files
+*.conf
+*.ini
+*.env
