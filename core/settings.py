@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'direcciones',
     'materiales',
     'proyectos',
+    'tecnicos',
     'accounts',
 ]
 
