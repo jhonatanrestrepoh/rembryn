@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'materiales',
     'proyectos',
     'tecnicos',
+    'visitas_tecnicas',
     'accounts',
 ]
 

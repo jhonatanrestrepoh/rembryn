@@ -59,6 +59,7 @@ class DetalleCotizacionInline(admin.TabularInline):
         return instance.cantidad * instance.materiales.precio
     get_total.short_description = 'Total'
 
+
 class CotizacionAdmin(admin.ModelAdmin):
     list_display = ('proyecto', 'subtotal_formatted', 'descuento', 'total_pagar_formatted')
     inlines = [DetalleCotizacionInline]
