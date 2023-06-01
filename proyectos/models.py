@@ -35,7 +35,7 @@ class Proyecto(models.Model):
                                 )
     fecha_actualizacion =models.DateField(auto_now=True)
     fecha_registro =models.DateField(auto_now_add=True)
-    estados = models.CharField(blank=False, null=False, max_length=100, choices=ESTADOS)
+    estado = models.CharField(blank=False, null=False, max_length=100, choices=ESTADOS)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     direccion = ChainedForeignKey(Direccion,
                                   chained_field='cliente',

@@ -14,7 +14,7 @@ min_date = timezone.now().date().strftime('%d-%m-%Y')
 # Create your models here.
 class VisitaTecnica(models.Model):
     fecha_visita =models.DateField(blank=False,)
-    tecnicos = models.ForeignKey(Tecnico, blank=False, on_delete=models.CASCADE)
+    tecnico = models.ForeignKey(Tecnico, blank=False, on_delete=models.CASCADE)
     proyecto = models.ForeignKey(Proyecto, blank=False, on_delete=models.CASCADE)
     fecha_actualizacion= models.DateField(auto_now=True)
     fecha_registro= models.DateField(auto_now_add=True)

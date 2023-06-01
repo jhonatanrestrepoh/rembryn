@@ -1,1 +1,21 @@
 {% extends 'base.html' %}
+
+{% block content %}
+<div class="text-white">
+{% for proyecto in proyectos %}
+  <h2>{{ proyecto.nombre }}</h2>
+  <p>Estado: {{ proyecto.estado }}</p>
+  <p>Dirección: {{ proyecto.direccion__direccion }}</p>
+  <h4>Visita técnica</h4>
+  {% if proyecto.ultima_fecha_visita %}
+  <p>Última fecha de visita: {{ proyecto.ultima_fecha_visita }}</p>
+  <p>Técnico: {{ proyecto.nombre_tecnico }} {{ proyecto.apellido_tecnico }}</p>
+  {% else %}
+  <p>No tienes visitas técnicas programadas</p>
+  {% endif %}
+{% endfor %}
+</div>
+
+{% endblock content %}
+
+
