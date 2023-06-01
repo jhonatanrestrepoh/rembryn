@@ -147,3 +147,9 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+import os
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'node_modules/bootstrap/dist',
+    os.path.join(BASE_DIR, 'accounts/static'),
+]

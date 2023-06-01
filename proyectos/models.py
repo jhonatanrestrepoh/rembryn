@@ -28,7 +28,7 @@ validators = [MinValueValidator(timezone.now().date(), message=f"La fecha debe s
 
 # Create your models here.
 class Proyecto(models.Model):
-    nombre = models.CharField(blank=False, max_length=100)
+    nombre = models.CharField(unique=True, blank=False, max_length=100)
     descripcion = models.TextField(blank=True, max_length=500)
     fecha_fin = models.DateField(
                                 #  validators=validators 
