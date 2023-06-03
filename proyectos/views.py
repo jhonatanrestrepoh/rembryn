@@ -19,7 +19,7 @@ def proyectos_list_view(request):
                 nombre_tecnico=F('visitatecnica__tecnico__primer_nombre'),
                 apellido_tecnico=F('visitatecnica__tecnico__primer_apellido')
                 
-            ).values('id', 'nombre', 'estado', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico')
+            ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico')
         print(proyectos)
         return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
     except Exception as e:
