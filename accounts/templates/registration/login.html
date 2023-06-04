@@ -14,25 +14,27 @@
       </div>
       
       {% endif %}
-      <h2 class=" text-center rounded-top">Iniciar sesión</h2>
     </div>
   </div>
   <div class="row justify-content-center">
-    <div class="col-md-6 rounded-bottom bg-black" >
+    <div class="p-0 col-md-6 border rounded border-info-subtle" >
+      <h2 class=" text-center rounded-top">Iniciar sesión</h2>
       
       <form method="post" >
         {% csrf_token %}
+        <div class="m-3">
         <div class="mb-3">
           <label for="id_username" class="form-label">Usuario</label>
-          <input type="text" name="username" id="id_username" class="form-control bg-dark text-white" required>
+          <input type="text" name="username" id="id_username" class="form-control bg-secondary text-white" required>
         </div>
         <div class="mb-3">
           <label for="id_password" class="form-label">Contraseña</label>
-          <input type="password" name="password" id="id_password" class="form-control bg-dark text-white" required>
+          <input type="password" name="password" id="id_password" class="form-control bg-secondary text-white" required>
         </div>
         <div class="text-center mb-3">
-          <button type="submit" class="btn btn-info opacity-75 ">Iniciar sesión</button>
+          <button type="submit" class="btn btn-info text-white opacity-75 ">Iniciar sesión</button>
         </div>
+      </div>
       </form>
     </div>
   </div>
