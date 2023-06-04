@@ -25,6 +25,9 @@ urlpatterns = [
     #proyectos
     path('cotizaciones/', include('cotizaciones.urls')),
     
+    #clientes
+    path('clientes/', include('clientes.urls')),
+    
     #accounts
     path('accounts/', include('accounts.urls')),
     

@@ -1,6 +1,10 @@
+# model
+from clientes.models import Cliente
+
 # django
-from django.shortcuts import render
+from django.urls import reverse
 from django.db.models import Max, F
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
 
@@ -17,7 +21,7 @@ def proyectos_list_view(request):
                 
             ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico')
         return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
-    except Exception as e:
+    except Cliente.DoesNotExist:
         # redirect a registrar el perfil
-        print(e)
-        return render(request, 'proyectos/proyectos_list.html', {})
+        url = reverse('clientes:perfil')
+        return redirect(url)
