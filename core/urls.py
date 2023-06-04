@@ -28,6 +28,9 @@ urlpatterns = [
     #clientes
     path('clientes/', include('clientes.urls')),
     
+    #direcciones
+    path('direcciones/', include('direcciones.urls')),
+    
     #accounts
     path('accounts/', include('accounts.urls')),
     
