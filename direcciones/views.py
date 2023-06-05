@@ -10,6 +10,7 @@ from django.urls import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 
 DIRECCIONES = 'direcciones:direcciones'
 
@@ -18,19 +19,24 @@ DIRECCIONES = 'direcciones:direcciones'
 
 @login_required
 def crear_view(request):
-    cliente = Cliente.objects.get(usuario=request.user.id)
-    if request.method == 'POST':
-        form = DireccionForm(request.POST)
-        if form.is_valid():
-            direccion = form.save(commit=False)
-            direccion.cliente_id = cliente.id  # Asignar el ID del cliente
-            direccion.save()
-            messages.success(request, 'Dirección guardada con éxito')
-            return redirect('direcciones:crear')
-    else:
-        form = DireccionForm(initial={'cliente': cliente.id})  # Pasar el ID del cliente al formulario
+    try:
+        cliente = Cliente.objects.get(usuario=request.user.id)
+        if request.method == 'POST':
+            form = DireccionForm(request.POST)
+            if form.is_valid():
+                direccion = form.save(commit=False)
+                direccion.cliente_id = cliente.id  # Asignar el ID del cliente
+                direccion.save()
+                messages.success(request, 'Dirección guardada con éxito')
+                return redirect('direcciones:crear')
+        else:
+            form = DireccionForm(initial={'cliente': cliente.id})  # Pasar el ID del cliente al formulario
 
-    return render(request, 'direcciones/crear.html', {'form': form})
+        return render(request, 'direcciones/crear.html', {'form': form})
+    except ObjectDoesNotExist:
+        messages.warning(request, '😳 ¡Ups! Primero debes completar tu información personal')
+        url = reverse('proyectos:list')
+        return redirect(url)
 
 
 @login_required
@@ -59,5 +65,13 @@ def delete_view(request, pk):
 
 @login_required
 def direcciones_view(request):
-    direcciones = Direccion.objects.all()
-    return render(request, 'direcciones/direcciones.html', {'direcciones': direcciones})
+    try:
+        request.user.cliente
+        direcciones = Direccion.objects.all()
+       
+        return render(request, 'direcciones/direcciones.html', {'direcciones': direcciones})
+    
+    except ObjectDoesNotExist:
+        messages.warning(request, '😳 ¡Ups! Primero debes completar tu información personal')
+        url = reverse('proyectos:list')
+        return redirect(url)

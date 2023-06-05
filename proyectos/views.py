@@ -3,6 +3,7 @@ from clientes.models import Cliente
 
 # django
 from django.urls import reverse
+from django.contrib import messages 
 from django.db.models import Max, F
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -23,5 +24,6 @@ def proyectos_list_view(request):
         return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
     except Cliente.DoesNotExist:
         # redirect a registrar el perfil
+        messages.warning(request, '😳 ¡Ups! Primero debes completar tu información personal')
         url = reverse('clientes:perfil')
         return redirect(url)
