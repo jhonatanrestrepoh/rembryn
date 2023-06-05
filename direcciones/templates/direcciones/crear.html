@@ -1,0 +1,75 @@
+{% extends 'base.html' %} 
+
+{% block title %}Crear dirección{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-8 offset-2">
+        <h1>Crear dirección</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-8 offset-2">
+         
+        <form method="post">
+            {% csrf_token %}
+            {{ form.media.js }}
+            <div class="form-group">
+                <label for="{{ form.direccion.id_for_label }}">Dirección:</label>
+                {{ form.direccion }}
+                {% if form.direccion.errors %}
+                    <div class="alert alert-danger">
+                        {% for error in form.direccion.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            
+        
+            <div class="form-group">
+                <label for="{{ form.departamento.id_for_label }}">Departamento:</label>
+                {{ form.departamento }}
+            </div>
+        
+            <div class="form-group">
+                <label for="{{ form.municipio.id_for_label }}">Municipio:</label>
+                {{ form.municipio }}
+            </div>
+        
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </form>
+
+        {% comment %} <form method="post" class="form">
+          {% csrf_token %}
+          {{ form.media.js }}
+          {% for field in form %}
+          <div class="form-group">{{ field.label_tag }} {{ field }}</div>
+
+          {% if field.errors %}
+          <div class="alert alert-danger" role="alert">
+            {% for error in field.errors %}
+            <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+          {% endif %} {% endfor %}
+
+          <div class="d-flex justify-content-center">
+            <button
+              class="btn btn-info"
+              onclick="showAlertSave()"
+              type="submit"
+            >
+              Guardar
+            </button>
+          </div>
+        </form> {% endcomment %}
+      </div>
+    </div>
+  </div>
+
+  {% endblock content %}
+
+<script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+<script src="/static/smart-selects/admin/js/bindfields.js"></script>

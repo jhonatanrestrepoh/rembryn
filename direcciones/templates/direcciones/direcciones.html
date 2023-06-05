@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}Direcciones{% endblock title %}
+
+{% block content %}
+
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-4 offset-2">
+          <h1>Direcciones</h1>
+        </div>
+        <div class="col-4">
+          <a href="{% url 'direcciones:crear' %}" class="btn btn-info"
+            >Nueva dirección</a
+          >
+        </div>
+      </div>
+      <div class="col-8 offset-2">
+      </div>
+      <div class="row">
+        {% for direccion in direcciones %}
+        <div
+          class="col-8 offset-2 d-flex justify-content-between align-items-center border-bottom border-info mb-2"
+        >
+          <div>
+            <p><strong>Dirección:</strong> {{ direccion.direccion }}</p>
+            <p><strong>Departamento:</strong> {{ direccion.departamento }}</p>
+            <p><strong>Municipio:</strong> {{ direccion.ciudad }}</p>
+            <!-- Mostrar otros campos de la dirección según tus necesidades -->
+          </div>
+
+          <div>
+            <a
+              href="{% url 'direcciones:editar' direccion.pk %}"
+              class="btn btn-outline-info"
+              >Editar</a
+            >
+            <form
+              id="deleteForm"
+              action="{% url 'direcciones:borrar' direccion.pk %}"
+              method="post"
+              class="d-inline"
+            >
+              {% csrf_token %}
+              <input
+                type="submit"
+                value="Eliminar"
+                class="btn btn-outline-danger"
+              />
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+{% endblock content %}
+
+{% block js %}
+    <script>
+        document
+        .getElementById("deleteForm")
+        .addEventListener("submit", function (event) {
+            var confirmDelete = confirm(
+            "¿Estás seguro de que deseas eliminar esta dirección?"
+            );
+            if (!confirmDelete) {
+            event.preventDefault(); // Cancela el envío del formulario si no se confirma la eliminación
+            }
+        });
+    </script>
+{% endblock js %}
+

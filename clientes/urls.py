@@ -4,8 +4,8 @@ from . import views
 # django
 from django.urls import path
 
-app_name = 'accounts'
+app_name= 'clientes'
 
 urlpatterns = [
-    path('signup/', views.signup, name='signup'),
+    path('perfil/', views.perfil_view, name='perfil'),
 ]
