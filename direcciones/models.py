@@ -69,8 +69,7 @@ class Municipio(models.Model):
 
 
 class Direccion(models.Model):
-    direccion = models.CharField(unique=True, 
-                                 blank=False, 
+    direccion = models.CharField(blank=False, 
                                  max_length=100, 
                                  validators=[validate_direction], 
                                  error_messages={'unique': "La dirección ya existe. Ingresa una dirección diferente.",}

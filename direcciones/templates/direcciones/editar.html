@@ -3,17 +3,14 @@
 
 {% block content %}
 
-<div class="container">
-  <div class="row justify-content-between">
-    <div class="col-8 offset-2">
-      <h1>Editar dirección</h1>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-8 offset-2">
+<div class="row justify-content-center mb-4">
+  <div class="p-0 col-md-6 border rounded border-info-subtle text-center">
+      <h2 class=" text-center rounded-top p-2">Editar dirección</h2>
+
       <form method="post" class="form">
-        {% csrf_token %} {% for field in form %}
-        <div class="form-group">{{ field.label_tag }} {{ field }}</div>
+        {% csrf_token %} 
+        {% for field in form %}
+        <div class="m-3">{{ field.label_tag }} {{ field }}</div>
 
         {% if field.errors %}
         <div class="alert alert-danger" role="alert">
@@ -23,12 +20,12 @@
         </div>
         {% endif %} {% endfor %}
 
-        <div class="d-flex justify-content-center">
-          <button class="btn btn-info" type="submit">Guardar</button>
+        <div class="text-center mb-3">
+          <button class="btn btn-info" type="submit">Actualizar dirección</button>
         </div>
       </form>
-    </div>
   </div>
 </div>
+
 {% endblock content %}
 

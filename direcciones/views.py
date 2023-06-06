@@ -28,7 +28,7 @@ def crear_view(request):
                 direccion.cliente_id = cliente.id  # Asignar el ID del cliente
                 direccion.save()
                 messages.success(request, 'Dirección guardada con éxito')
-                return redirect('direcciones:crear')
+                return redirect('direcciones:direcciones')
         else:
             form = DireccionForm(initial={'cliente': cliente.id})  # Pasar el ID del cliente al formulario
 
