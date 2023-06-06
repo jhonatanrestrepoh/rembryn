@@ -1,10 +1,10 @@
-# forms
-from .forms import SignUpForm 
 
 # django
 from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import render, redirect
+# forms
+from .forms import SignUpForm 
 
 
 def signup(request):
