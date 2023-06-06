@@ -15,27 +15,27 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def perfil_view(request):
     user_id = request.user.id
+    try:
+        cliente = Cliente.objects.get(usuario_id=user_id)
+        is_new_cliente = False
+    except Cliente.DoesNotExist:
+        cliente = Cliente(usuario_id=user_id)
+        is_new_cliente = True
+
     if request.method == 'POST':
         cliente_form = ClienteForm(request.POST, instance=cliente)
         if cliente_form.is_valid():
             cliente = cliente_form.save()
-            messages.success(request, 'Se actualizó tu perfil')
+            if is_new_cliente:
+                messages.success(request, 'Se creó tu perfil')
+            else:
+                messages.success(request, 'Se actualizó tu perfil')
             return redirect(reverse('clientes:perfil'))
     else:
-        try: 
-            cliente = Cliente.objects.get(usuario=user_id)  
-            cliente_form = ClienteForm(instance=cliente)
+        cliente_form = ClienteForm(instance=cliente)
         
-            Direccion.objects.get(cliente_id=cliente.id)
-        except Exception:
-            context = {
-                'cliente_form': ClienteForm(),
-                'direccion_button': True
-            }
-            return render(request, 'clientes/perfil.html', context)
-        else:        
-            context = {
-                'cliente_form': cliente_form,
-                'direccion_button': False
-            }
-            return render(request, 'clientes/perfil.html', context)
+    context = {
+        'cliente_form': cliente_form,
+        'is_new_cliente': is_new_cliente
+    }
+    return render(request, 'clientes/perfil.html', context)

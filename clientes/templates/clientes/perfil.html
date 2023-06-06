@@ -30,7 +30,7 @@
                 {% endfor %}
 
                 <div class="d-flex justify-content-center m-3">
-                    <a class="btn btn-info" id="guardar-button" type="submit">Guardar cambios</a>
+                    <button class="btn btn-info" id="guardar-button" type="submit">Guardar cambios</button>
                     {% if direccion_button %}
                       <a href="{% url 'direcciones:crear' %}" id="agregar-button" class="btn btn-secondary ms-4" type="submit">Agregar Dirección</a>
                     {% endif %}
@@ -42,23 +42,5 @@
 
 {% endblock content %}
 
-{% block js %}
 
-<script>
-    function hideMessage(messageId) {
-        var messageElement = document.getElementById('message-' + messageId);
-        if (messageElement) {
-            messageElement.remove();
-        }
-    }
-
-    document.getElementById('agregar-button').addEventListener('click', function(event) {
-        if (!document.getElementById('guardar-button').classList.contains('active')) {
-            event.preventDefault();
-            alert('😳 ¡Ups! Ingresa primero tu información personal y haga clic en "Guardar cambios" antes de agregar una dirección.');
-        }
-    });
-    
-</script>
-{% endblock js %}
 

@@ -66,8 +66,8 @@ def delete_view(request, pk):
 @login_required
 def direcciones_view(request):
     try:
-        request.user.cliente
-        direcciones = Direccion.objects.all()
+        cliente = request.user.cliente
+        direcciones = cliente.direccion_set.all()
        
         return render(request, 'direcciones/direcciones.html', {'direcciones': direcciones})
     
