@@ -1,12 +1,19 @@
+# django
+from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin
+
 # models
 from .models import Direccion, Departamento, Municipio
 
-# django
-from django.contrib import admin
+@admin.register(Municipio)
+class MunicipioAdmin(ImportExportModelAdmin):
+    pass
 
+@admin.register(Departamento)
+class DepartamentoAdmin(ImportExportModelAdmin):
+    pass
 
 # Register your models here.
 admin.site.register(Direccion)
-admin.site.register(Departamento)
-admin.site.register(Municipio)
+
 

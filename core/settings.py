@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'smart_selects',
+    'import_export',
     'clientes',
     'cotizaciones',
     'direcciones',
