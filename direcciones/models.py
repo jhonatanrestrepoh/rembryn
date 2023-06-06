@@ -56,7 +56,7 @@ class Departamento(models.Model):
         
 
 class Municipio(models.Model):
-    nombre = models.CharField(blank=False, max_length=100, unique=True)
+    nombre = models.CharField(blank=False, max_length=100)
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
 
 
