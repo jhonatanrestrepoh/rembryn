@@ -28,7 +28,7 @@ class VisitaTecnica(models.Model):
             raise ValidationError(f'La fecha debe ser igual o posterior a la fecha actual {min_date}.')
 
     def __str__(self):
-        return self.proyecto.nombre
+        return f"{self.id} {self.proyecto.nombre} "
     
     class Meta:
         verbose_name = "Visita técnica"

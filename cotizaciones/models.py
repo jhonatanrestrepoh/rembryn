@@ -20,12 +20,6 @@ class Cotizacion(models.Model):
                                     error_messages={'unique':'Ya existe una cotización para este proyecto.'}
                                     )
 
-    def clean(self):
-        super().clean()
-
-        if not self.detallecotizacion_set.exists():
-            raise ValidationError('Debe agregar al menos un detalle de cotización.')
-
     
     def save(self, *args, **kwargs):
         descuento_int = self.subtotal * (self.descuento / 100)

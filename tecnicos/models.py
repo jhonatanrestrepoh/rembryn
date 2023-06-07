@@ -78,7 +78,7 @@ class Tecnico(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.cedula or ""
+        return f"{self.primer_nombre} {self.segundo_nombre} {self.primer_apellido} {self.segundo_apellido}"
     
     class Meta:
         verbose_name = "Técnico"
