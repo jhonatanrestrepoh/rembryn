@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.auth.views import LoginView
 from proyectos.views import proyectos_list_view
 
 
 
 urlpatterns = [
-    path('', proyectos_list_view, name='proyectos'),
+    path('', LoginView.as_view(), name='login'),
     
     path('admin/', admin.site.urls),
     
