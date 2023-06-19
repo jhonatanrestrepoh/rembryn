@@ -1,5 +1,6 @@
 # model
 from clientes.models import Cliente
+from direcciones.models import Direccion
 from cotizaciones.models import Cotizacion
 
 # django
@@ -14,19 +15,27 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def proyectos_list_view(request):
-    try:
-        cliente = request.user.cliente  # Suponiendo que el modelo de cliente se asocia al usuario mediante un campo OneToOneField
-        proyectos = cliente.proyecto_set.annotate(
-                ultima_fecha_visita=Max('visitatecnica__fecha_visita'),
-                nombre_tecnico=F('visitatecnica__tecnico__primer_nombre'),
-                apellido_tecnico=F('visitatecnica__tecnico__primer_apellido'),
-                tiene_cotizacion=Exists(Cotizacion.objects.filter(proyecto=OuterRef('pk')))
-                
-            ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico', 'tiene_cotizacion')
-        print(proyectos)
-        return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
-    except Cliente.DoesNotExist:
-        # redirect a registrar el perfil
+    
+    cliente = request.user.cliente 
+    
+    if cliente:
+        direcciones = Direccion.objects.filter(cliente=cliente)
+        
+        if direcciones.exists():
+            proyectos = cliente.proyecto_set.annotate(
+                    ultima_fecha_visita=Max('visitatecnica__fecha_visita'),
+                    nombre_tecnico=F('visitatecnica__tecnico__primer_nombre'),
+                    apellido_tecnico=F('visitatecnica__tecnico__primer_apellido'),
+                    tiene_cotizacion=Exists(Cotizacion.objects.filter(proyecto=OuterRef('pk')))
+                    
+                ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico', 'tiene_cotizacion')
+            return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
+        
+        else:
+            messages.warning(request, '😳 ¡Ups! Primero debes registrar una dirección')
+            url = reverse('direcciones:crear')
+            return redirect(url)
+    else:
         messages.warning(request, '😳 ¡Ups! Primero debes completar tu información personal')
         url = reverse('clientes:perfil')
         return redirect(url)
