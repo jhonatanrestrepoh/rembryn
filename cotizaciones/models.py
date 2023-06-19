@@ -11,7 +11,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 # Create your models here.
 class Cotizacion(models.Model):
     subtotal = models.IntegerField(default=0)
-    descuento = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(100)])
+    descuento = models.PositiveSmallIntegerField(default=0, validators=[MaxValueValidator(15)])
     total_pagar = models.IntegerField(default=0)
     fecha_actualizacion = models.DateField(auto_now=True)
     fecha_registro = models.DateField(auto_now_add=True)
