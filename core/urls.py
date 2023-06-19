@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.contrib.auth.views import LoginView
+from proyectos.views import proyectos_list_view
+
 
 
 urlpatterns = [
-    path('', LoginView.as_view(), name='login'),
+    path('', proyectos_list_view, name='proyectos'),
     
     path('admin/', admin.site.urls),
     
@@ -43,6 +44,9 @@ urlpatterns = [
     
     #django-smart-selects
     path('chaining/', include('smart_selects.urls')),
+
 ]
 
 urlpatterns += staticfiles_urlpatterns()
+
+admin.site.site_header = 'Administración de Rembryn'

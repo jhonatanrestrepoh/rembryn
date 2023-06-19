@@ -1,11 +1,12 @@
 # model
 from clientes.models import Cliente
+from cotizaciones.models import Cotizacion
 
 # django
 from django.urls import reverse
 from django.contrib import messages 
-from django.db.models import Max, F
 from django.shortcuts import render, redirect
+from django.db.models import Max, F, Exists, OuterRef
 from django.contrib.auth.decorators import login_required
 
 
@@ -18,9 +19,11 @@ def proyectos_list_view(request):
         proyectos = cliente.proyecto_set.annotate(
                 ultima_fecha_visita=Max('visitatecnica__fecha_visita'),
                 nombre_tecnico=F('visitatecnica__tecnico__primer_nombre'),
-                apellido_tecnico=F('visitatecnica__tecnico__primer_apellido')
+                apellido_tecnico=F('visitatecnica__tecnico__primer_apellido'),
+                tiene_cotizacion=Exists(Cotizacion.objects.filter(proyecto=OuterRef('pk')))
                 
-            ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico')
+            ).values('id', 'nombre', 'direccion__direccion', 'ultima_fecha_visita', 'nombre_tecnico', 'apellido_tecnico', 'tiene_cotizacion')
+        print(proyectos)
         return render(request, 'proyectos/proyectos_list.html', {'proyectos': proyectos})
     except Cliente.DoesNotExist:
         # redirect a registrar el perfil
