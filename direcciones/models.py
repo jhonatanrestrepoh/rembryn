@@ -25,7 +25,9 @@ def validate_direction(direccion):
         r'^(Calle|Carrera|Diagonal|Cl|Cr|Diag|Cra)\s\d{1,3}[a-zA-Z]?\s(sur)\s#\s\d{1,3}\s(sur)\s-\s\d{1,3}\s\d{1,2}\s(apto)\s\d{1,4}$',
         r'^Cra \d+ # \d+ [a-zA-Z] Sur \d+$',
         r'^Cra \d+[A-Z]? \d+-\d+$',
-        r'^Cl \d+ sur # \d+[A-Z]?-\d+ Casa \d+$'
+        r'^Cl \d+ sur # \d+[A-Z]?-\d+ Casa \d+$',
+        r'^Cl \d+ sur # \d+[A-Z]-\d+$'
+        
     ]
     
     is_valide = False
