@@ -15,27 +15,85 @@
             <form method="post" class="form">
                 {% csrf_token %}
                 
-                {% for field in cliente_form %}
-                    <div class="form-group m-3">
-                        {{ field }}
-                    </div>
-
-                    {% if field.errors %}
+                <div class="form-group m-3">
+                    {% if cliente_form.cedula.value %}
+                        <input type="text" class="form-control bg-secondary text-white" value="{{ cliente_form.cedula.value }}" disabled>
+                    {% else %}
+                        {{ cliente_form.cedula }}
+                    {% endif %}
+                    {% if cliente_form.cedula.errors %}
                         <div class="alert alert-danger" role="alert">
-                            {% for error in field.errors %}
+                            {% for error in cliente_form.cedula.errors %}
                                 <p>{{ error }}</p>
                             {% endfor %}
                         </div>
                     {% endif %}
-                {% endfor %}
-
+                </div>
+                
+            
+                <div class="form-group m-3">
+                    {{ cliente_form.primer_nombre }}
+                    {% if cliente_form.primer_nombre.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in cliente_form.primer_nombre.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            
+                <div class="form-group m-3">
+                    {{ cliente_form.segundo_nombre }}
+                    {% if cliente_form.segundo_nombre.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in cliente_form.segundo_nombre.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            
+                <div class="form-group m-3">
+                    {{ cliente_form.primer_apellido }}
+                    {% if cliente_form.primer_apellido.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in cliente_form.primer_apellido.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            
+                <div class="form-group m-3">
+                    {{ cliente_form.segundo_apellido }}
+                    {% if cliente_form.segundo_apellido.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in cliente_form.segundo_apellido.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            
+                <div class="form-group m-3">
+                    {{ cliente_form.celular }}
+                    {% if cliente_form.celular.errors %}
+                        <div class="alert alert-danger" role="alert">
+                            {% for error in cliente_form.celular.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            
                 <div class="d-flex justify-content-center m-3">
                     <button class="btn btn-info" id="guardar-button" type="submit">Guardar cambios</button>
                     {% if direccion_button %}
-                      <a href="{% url 'direcciones:crear' %}" id="agregar-button" class="btn btn-secondary ms-4" type="submit">Agregar Dirección</a>
+                        <a href="{% url 'direcciones:crear' %}" id="agregar-button" class="btn btn-secondary ms-4" type="submit">Agregar Dirección</a>
                     {% endif %}
-                </div>                  
+                </div>
             </form>
+            
         </div>
     </div>
 </div>

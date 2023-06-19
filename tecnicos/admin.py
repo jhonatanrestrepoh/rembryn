@@ -8,4 +8,6 @@ from import_export.admin import ImportExportModelAdmin
 
 @admin.register(Tecnico)
 class TecnicoAdmin(ImportExportModelAdmin):
-    pass
+    list_display = ['cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido', 'celular', 'fecha_registro']
+    search_fields = ['cedula', 'primer_nombre', 'segundo_nombre', 'primer_apellido', 'segundo_apellido']
+

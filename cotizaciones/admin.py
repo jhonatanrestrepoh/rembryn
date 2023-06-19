@@ -21,7 +21,7 @@ class DetalleCotizacionInline(admin.TabularInline):
 
 
 class CotizacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('proyecto', 'subtotal_formatted', 'descuento', 'total_pagar_formatted', 'fecha_registro')
+    list_display = ('proyecto', 'subtotal_formatted', 'descuento', 'total_pagar_formatted', 'fecha_registro', 'fecha_actualizacion')
     search_fields = ['proyecto__nombre']
     inlines = [DetalleCotizacionInline]
     fields = ('proyecto',

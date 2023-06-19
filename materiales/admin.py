@@ -8,8 +8,8 @@ from import_export.admin import ImportExportModelAdmin
 
 
 class MaterialAdmin(ImportExportModelAdmin, admin.ModelAdmin):
-    list_display = ('nombre', 'precio_formatted')
-
+    list_display = ('nombre', 'precio_formatted', 'fecha_registro', 'fecha_actualizacion')
+    search_fields = ['nombre']
     def precio_formatted(self, obj):
         return intcomma(obj.precio)
     precio_formatted.short_description = 'Precio'
