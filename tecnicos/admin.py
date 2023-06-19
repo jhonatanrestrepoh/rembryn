@@ -3,6 +3,9 @@ from .models import Tecnico
 
 # django
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin  
 
-# Register your models here.
-admin.site.register(Tecnico)
+
+@admin.register(Tecnico)
+class TecnicoAdmin(ImportExportModelAdmin):
+    pass

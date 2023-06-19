@@ -4,9 +4,10 @@ from .models import Material
 # django
 from django.contrib import admin
 from django.contrib.humanize.templatetags.humanize import intcomma
+from import_export.admin import ImportExportModelAdmin  
 
 
-class MaterialAdmin(admin.ModelAdmin):
+class MaterialAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('nombre', 'precio_formatted')
 
     def precio_formatted(self, obj):

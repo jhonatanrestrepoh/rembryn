@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Cotizacion, DetalleCotizacion
 from django.contrib.humanize.templatetags.humanize import intcomma
+from import_export.admin import ImportExportModelAdmin  
+
 
 
 
@@ -18,7 +20,7 @@ class DetalleCotizacionInline(admin.TabularInline):
     get_total.short_description = 'Total'
 
 
-class CotizacionAdmin(admin.ModelAdmin):
+class CotizacionAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('proyecto', 'subtotal_formatted', 'descuento', 'total_pagar_formatted', 'fecha_registro')
     search_fields = ['proyecto__nombre']
     inlines = [DetalleCotizacionInline]

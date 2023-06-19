@@ -4,6 +4,7 @@ from visitas_tecnicas.models import VisitaTecnica
 
 # django
 from django.contrib import admin
+from import_export.admin import ImportExportModelAdmin  
 
 
 class VisitaTecnicaAdmin(admin.ModelAdmin):
@@ -13,7 +14,7 @@ class VisitaTecnicaInline(admin.TabularInline):
     model = VisitaTecnica
     extra = 1
     
-class ProyectoAdmin(admin.ModelAdmin):
+class ProyectoAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     inlines = [VisitaTecnicaInline]
 
 # Register your models here.
